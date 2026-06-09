@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: api.notification
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  mail:
+    host: smtp.ethereal.email
+    port: 587
+    username: opal.brakus70@ethereal.email
+    password: nWYZvxmmmAky6BWFcg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+jwt:
+  secret: minha-chave-secreta-para-assinar-tokens-jwt
+  expiration: 86400000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
