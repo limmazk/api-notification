@@ -21,20 +21,20 @@ API REST para gerenciamento de tarefas com sistema de notificações automática
 
 ## Arquitetura
 
-O projeto segue uma arquitetura em camadas com separação clara de responsabilidades:
+O projeto segue uma arquitetura em camadas com separação clara:
 
 ```
 Controller → Service → Repository → Entity
 ```
 
-- **controller/** — recebe as requisições HTTP e delega ao service
-- **service/** — contém a lógica de negócio
-- **repository/** — interfaces JPA para acesso ao banco de dados
-- **entity/** — entidades mapeadas para tabelas do PostgreSQL
-- **dto/** — objetos de transferência de dados (entrada e saída da API)
-- **security/** — configuração do Spring Security, filtro JWT e geração de tokens
-- **exception/** — tratamento global de exceções
-- **job/** — job do Quartz para notificações automáticas
+- **controller/**  
+- **service/** 
+- **repository/**
+- **entity/** 
+- **dto/** 
+- **security/**
+- **exception/** 
+- **job/**
 
 ---
 
@@ -45,33 +45,6 @@ Controller → Service → Repository → Entity
 - Envio automático de e-mail ao criar uma tarefa
 - Job agendado (a cada hora) que verifica tarefas próximas do vencimento e envia notificação por e-mail
 - Documentação interativa via Swagger UI
-
----
-
-## Como executar
-
-### Pré-requisitos
-
-- Java 25
-- Docker Desktop
-
-### Passos
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/seu-usuario/api.notification.git
-cd api.notification
-```
-
-2. Execute a aplicação — o Docker Compose sobe o PostgreSQL automaticamente:
-```bash
-./mvnw spring-boot:run
-```
-
-3. Acesse a documentação:
-```
-http://localhost:8080/swagger-ui.html
-```
 
 ---
 
@@ -111,15 +84,10 @@ A API utiliza autenticação stateless com JWT. Para acessar rotas protegidas:
 2. Copie o token retornado
 3. Envie o token no header de cada requisição:
 
-```
-Authorization: Bearer seu_token_aqui
-```
-
-No Swagger UI, clique em **Authorize** e cole o token no formato acima.
 
 ---
 
-## Exemplo de uso
+## Exemplo 
 
 ### Criar conta
 ```json
@@ -156,11 +124,6 @@ O Quartz Scheduler executa um job a cada hora que:
 
 ---
 
-## Variáveis de configuração
+## Arquivo do Swagger
 
-| Propriedade | Descrição |
-|-------------|-----------|
-| `jwt.secret` | Chave secreta para assinar os tokens JWT |
-| `jwt.expiration` | Tempo de expiração do token em milissegundos |
-| `spring.mail.*` | Configurações do servidor SMTP |
-| `spring.jpa.hibernate.ddl-auto` | Estratégia de criação das tabelas |
+Importando o arquivo `api-docs.json` no Postman ou no editor.swagger.io, é possível visualizar a documentação completa.
